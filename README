@@ -1,0 +1,242 @@
+/*
+===========================================
+README - PETUNJUK INSTALASI
+===========================================
+
+APLIKASI POS KASIR - POINT OF SALE
+Menggunakan PHP & MySQL dengan Arsitektur MVC
+
+===========================================
+FITUR APLIKASI:
+===========================================
+
+1. ROLE ADMIN:
+   - Dashboard dengan statistik
+   - Manajemen Produk (CRUD)
+   - Manajemen Kategori (CRUD)
+   - Manajemen User (CRUD)
+   - Laporan Transaksi
+   - Lihat Detail Transaksi
+   - Transaksi Kasir
+
+2. ROLE KASIR:
+   - Dashboard
+   - Transaksi Kasir/Point of Sale
+   - Scan barcode/input kode produk
+   - Keranjang belanja
+   - Hitung otomatis kembalian
+
+===========================================
+CARA INSTALASI:
+===========================================
+
+1. PERSIAPAN SERVER:
+   - Install XAMPP/WAMP/LAMP
+   - PHP versi 7.4 atau lebih tinggi
+   - MySQL/MariaDB
+   - Extension PDO MySQL harus aktif
+
+2. SETUP DATABASE:
+   - Buka phpMyAdmin
+   - Import file database.sql
+   - Atau jalankan query SQL yang ada di file database.sql
+   - Database akan dibuat otomatis dengan nama "pos_kasir"
+
+3. KONFIGURASI:
+   - Buka file config/database.php
+   - Sesuaikan konfigurasi database:
+     * host (default: localhost)
+     * db_name (default: pos_kasir)
+     * username (default: root)
+     * password (default: kosong)
+
+4. STRUKTUR FOLDER:
+   Letakkan semua file dalam folder htdocs/www:
+   
+   xampp/htdocs/pos_kasir/
+   ├── config/
+   │   └── database.php
+   ├── controllers/
+   │   ├── AuthController.php
+   │   ├── DashboardController.php
+   │   ├── ProdukController.php
+   │   ├── KategoriController.php
+   │   ├── TransaksiController.php
+   │   └── UserController.php
+   ├── models/
+   │   ├── User.php
+   │   ├── Produk.php
+   │   ├── Kategori.php
+   │   └── Transaksi.php
+   ├── views/
+   │   ├── auth/
+   │   ├── dashboard/
+   │   ├── produk/
+   │   ├── kategori/
+   │   ├── transaksi/
+   │   ├── user/
+   │   └── layouts/
+   ├── .htaccess (optional)
+   └── index.php
+
+5. AKSES APLIKASI:
+   Buka browser dan akses:
+   http://localhost/pos_kasir/
+
+===========================================
+LOGIN DEFAULT:
+===========================================
+
+ADMIN:
+Username: admin
+Password: password
+
+KASIR:
+Username: kasir1
+Password: password
+
+===========================================
+CARA PENGGUNAAN:
+===========================================
+
+UNTUK ADMIN:
+
+1. Kelola Kategori:
+   - Klik menu "Kategori"
+   - Tambah kategori baru (Makanan, Minuman, dll)
+   - Edit atau hapus kategori
+
+2. Kelola Produk:
+   - Klik menu "Produk"
+   - Tambah produk baru dengan kode, nama, kategori, harga, stok
+   - Edit atau hapus produk
+   - Monitor stok rendah (< 10 item)
+
+3. Kelola User:
+   - Klik menu "User"
+   - Tambah kasir baru atau admin
+   - Edit data user atau ubah role
+   - Hapus user (tidak bisa hapus user sendiri)
+
+4. Lihat Laporan:
+   - Klik menu "Laporan Transaksi"
+   - Filter berdasarkan tanggal
+   - Lihat detail setiap transaksi
+   - Print laporan
+
+UNTUK KASIR:
+
+1. Transaksi Kasir:
+   - Klik menu "Kasir"
+   - Cari produk dengan search box atau klik langsung
+   - Produk masuk ke keranjang
+   - Atur jumlah dengan tombol +/-
+   - Input jumlah bayar
+   - Kembalian otomatis terhitung
+   - Klik "Proses Pembayaran"
+   - Transaksi tersimpan
+
+===========================================
+TEKNOLOGI YANG DIGUNAKAN:
+===========================================
+
+Backend:
+- PHP 7.4+ (Native PHP)
+- MySQL/MariaDB
+- PDO untuk database
+- Session management
+
+Frontend:
+- HTML5
+- CSS3 dengan Bootstrap 5.3
+- JavaScript & jQuery 3.6
+- Bootstrap Icons
+
+Arsitektur:
+- MVC (Model-View-Controller)
+- Separation of Concerns
+- Security: Password hashing, prepared statements
+- Role-based access control
+
+===========================================
+KEAMANAN:
+===========================================
+
+1. Password di-hash dengan bcrypt (password_hash)
+2. SQL Injection protected dengan PDO prepared statements
+3. Session-based authentication
+4. Role-based access control
+5. XSS protection dengan htmlspecialchars (optional)
+
+===========================================
+PENGEMBANGAN LEBIH LANJUT:
+===========================================
+
+Fitur yang bisa ditambahkan:
+- Export laporan ke PDF/Excel
+- Barcode scanner integration
+- Multi-store support
+- Grafik penjualan
+- Member/Customer management
+- Diskon dan promosi
+- Print struk thermal
+- API untuk mobile app
+- Backup database otomatis
+- Email notification
+- WhatsApp integration
+
+===========================================
+TROUBLESHOOTING:
+===========================================
+
+1. Error "Connection failed":
+   - Cek konfigurasi database.php
+   - Pastikan MySQL/Apache running
+   - Cek username/password database
+
+2. Error "Class not found":
+   - Pastikan semua file ada di folder yang benar
+   - Cek case-sensitive di Linux
+
+3. Session error:
+   - Pastikan folder tmp/ writable
+   - Check php.ini session.save_path
+
+4. CSS/JS tidak load:
+   - Cek URL di header.php
+   - Gunakan CDN untuk Bootstrap
+
+5. .htaccess tidak bekerja:
+   - Pastikan mod_rewrite aktif di Apache
+   - File .htaccess tidak wajib, aplikasi tetap bisa jalan
+
+===========================================
+KONTAK & SUPPORT:
+===========================================
+
+Untuk pertanyaan atau bantuan pengembangan:
+- Baca dokumentasi PHP: https://www.php.net
+- Bootstrap docs: https://getbootstrap.com
+- MySQL docs: https://dev.mysql.com/doc/
+
+===========================================
+LISENSI:
+===========================================
+
+Aplikasi ini dibuat untuk tujuan pembelajaran.
+Bebas digunakan dan dimodifikasi sesuai kebutuhan.
+
+===========================================
+CATATAN PENTING:
+===========================================
+
+- Selalu backup database sebelum update
+- Ganti password default setelah instalasi
+- Test di local dulu sebelum production
+- Untuk production, tambahkan HTTPS
+- Validasi input di sisi server
+- Log semua aktivitas penting
+
+Selamat menggunakan! 🚀
+===========================================
+*/
