@@ -22,13 +22,20 @@ class UserController {
 
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $username = trim($_POST['username']);
             $data = [
-                'username' => $_POST['username'],
+                'username' => $username,
                 'password' => $_POST['password'],
                 'nama_lengkap' => $_POST['nama_lengkap'],
                 'role' => $_POST['role']
             ];
-            
+
+            if ($this->userModel->existsByUsername($username)) {
+                $_SESSION['error'] = 'Username sudah digunakan!';
+                header("Location: index.php?page=user&action=create");
+                exit();
+            }
+
             if ($this->userModel->create($data)) {
                 $_SESSION['success'] = 'User berhasil ditambahkan!';
             } else {

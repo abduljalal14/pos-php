@@ -38,6 +38,15 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function existsByUsername($username) {
+        $query = "SELECT id FROM " . $this->table . " WHERE username = :username LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ? true : false;
+    }
+
     public function create($data) {
         $query = "INSERT INTO " . $this->table . " (username, password, nama_lengkap, role) 
                   VALUES (:username, :password, :nama_lengkap, :role)";
